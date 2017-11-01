@@ -1,11 +1,10 @@
 LOCAL_CXX_STL := libc++
-ifeq ($(TARGET_ARCH),mips)
-       LOCAL_MIPS_MODE=mips
-endif
 
 LOCAL_CPP_EXTENSION := cc
 
 LOCAL_CFLAGS += \
+	-Wall \
+	-Werror \
 	-Wno-endif-labels \
 	-Wno-import \
 	-Wno-format \
@@ -21,14 +20,11 @@ LOCAL_CFLAGS += \
 	-DENABLE_VMSTATE_TRACKING \
 	-DV8_NATIVE_REGEXP \
 	-DV8_I18N_SUPPORT \
-	-std=gnu++0x
+	-std=gnu++0x \
+	-Os
 
 LOCAL_CFLAGS_arm += -DV8_TARGET_ARCH_ARM
 LOCAL_CFLAGS_arm64 += -DV8_TARGET_ARCH_ARM64
-
-# atomicops_internals_arm64_gcc.h:77:49: error:
-# expected compatible register, symbol or integer in range [0, 4095]
-LOCAL_CLANG_CFLAGS_arm64 += -no-integrated-as
 
 LOCAL_CFLAGS_mips += -DV8_TARGET_ARCH_MIPS \
 	-Umips \
