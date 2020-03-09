@@ -61,22 +61,6 @@ cc_defaults {
         arm64: {
             cflags: ["-DV8_TARGET_ARCH_ARM64"],
         },
-        mips: {
-            cflags: [
-                "-DV8_TARGET_ARCH_MIPS",
-                "-Umips",
-                "-finline-limit=64",
-                "-fno-strict-aliasing",
-            ],
-        },
-        mips64: {
-            cflags: [
-                "-DV8_TARGET_ARCH_MIPS64",
-                "-Umips",
-                "-finline-limit=64",
-                "-fno-strict-aliasing",
-            ],
-        },
         x86: {
             cflags: ["-DV8_TARGET_ARCH_IA32"],
         },
@@ -257,13 +241,6 @@ cc_binary {
     ],
     cflags: ["-O0", "-DANDROID_LINK_SHARED_ICU4C"],
     local_include_dirs: ["include"],
-
-    arch: {
-        mips: {
-            // Bug: http://b/31101212  WAR LLVM bug until next Clang update
-            cflags: ["-O2"],
-        },
-    },
 }
 
 genrule {
