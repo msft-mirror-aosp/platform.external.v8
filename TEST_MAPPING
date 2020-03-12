@@ -1,0 +1,5 @@
+{
+  "presubmit": [
+    { "name": "proxy_resolver_v8_unittest" }
+  ]
+}
