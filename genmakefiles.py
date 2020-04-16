@@ -51,8 +51,6 @@ def _writeV8SrcBP(getSourcesFunc):
   arm64_src = list(getSourcesFunc('arm64') - sources)
   x86_src = list(getSourcesFunc('x86') - sources)
   x86_64_src = list(getSourcesFunc('x64') - sources)
-  mips_src = list(getSourcesFunc('mips') - sources)
-  mips64_src = list(getSourcesFunc('mips64') - sources)
 
   filename = 'Android.v8.bp'
   with open(filename, 'w') as out:
@@ -69,12 +67,6 @@ def _writeV8SrcBP(getSourcesFunc):
               },
               arm64: {
                  srcs: $arm64_src,
-              },
-              mips: {
-                 srcs: $mips_src,
-              },
-              mips64: {
-                 srcs: $mips64_src,
               },
               x86: {
                  srcs: $x86_src,
@@ -96,8 +88,6 @@ def _writeV8SrcBP(getSourcesFunc):
     ''').substitute({'srcs': _bpList(sorted(sources)),
                      'arm_src': _bpList(sorted(arm_src)),
                      'arm64_src': _bpList(sorted(arm64_src)),
-                     'mips_src': _bpList(sorted(mips_src)),
-                     'mips64_src': _bpList(sorted(mips64_src)),
                      'x86_src': _bpList(sorted(x86_src)),
                      'x86_64_src': _bpList(sorted(x86_64_src)),
                     }))
