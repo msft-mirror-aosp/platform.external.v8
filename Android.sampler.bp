@@ -8,7 +8,4 @@ cc_library_static {
         "src",
         "include",
     ],
-    apex_available: [
-        "com.android.i18n",
-    ],
 }
