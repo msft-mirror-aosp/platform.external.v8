@@ -25,9 +25,6 @@ cc_library_static {
         "src/base/utils/random-number-generator.cc",
     ],
     local_include_dirs: ["src"],
-    apex_available: [
-        "com.android.i18n",
-    ],
     target: {
         android: {
             srcs: ["src/base/debug/stack_trace_android.cc"],

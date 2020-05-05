@@ -604,9 +604,6 @@ cc_library_static {
             cflags: ["-DANDROID_LINK_SHARED_ICU4C"],
         },
     },
-    apex_available: [
-        "com.android.i18n",
-    ],
     local_include_dirs: ["src"],
     header_libs: [
         "libicuuc_headers",
