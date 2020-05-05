@@ -85,6 +85,9 @@ cc_library_static {
         "libicui18n_headers",
     ],
     generated_headers: ["v8_torque_file"],
+    apex_available: [
+        "com.android.i18n",
+    ],
 }
 
 cc_binary_host {
@@ -212,6 +215,9 @@ cc_library_static {
         "libv8sampler",
         "libv8src",
         "libv8gen",
+    ],
+    apex_available: [
+        "com.android.i18n",
     ],
     export_include_dirs: ["include"],
 }
