@@ -34,9 +34,6 @@ def _writeBP(filename, module_name, sources):
           defaults: ["v8_defaults"],
           srcs: $srcs,
           local_include_dirs: ["src", "include"],
-          apex_available: [
-              "com.android.i18n",
-          ],
       }
     ''').substitute({'module_name': module_name, 'srcs' : _bpList(sorted(sources))}))
 
@@ -83,9 +80,6 @@ def _writeV8SrcBP(getSourcesFunc):
                   cflags: ["-DANDROID_LINK_SHARED_ICU4C"],
               },
           },
-          apex_available: [
-              "com.android.i18n",
-          ],
           local_include_dirs: ["src"],
           header_libs: ["libicuuc_headers", "libicui18n_headers"],
           generated_headers: ["v8_torque_file"],
@@ -132,9 +126,6 @@ def _writeLibBaseBP(sources):
           host_supported: true,
           srcs: $srcs,
           local_include_dirs: ["src"],
-          apex_available: [
-              "com.android.i18n",
-          ],
           target: {
               android: {
                   srcs: ["src/base/debug/stack_trace_android.cc"],
