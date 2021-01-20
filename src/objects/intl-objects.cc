@@ -249,7 +249,7 @@ void SetResolvedDateSettings(Isolate* isolate, const icu::Locale& icu_locale,
   char result[ULOC_FULLNAME_CAPACITY];
   status = U_ZERO_ERROR;
   uloc_toLanguageTag(icu_locale.getName(), result, ULOC_FULLNAME_CAPACITY,
-                     FALSE, &status);
+                     false, &status);
   if (U_SUCCESS(status)) {
     JSObject::SetProperty(
         isolate, resolved, factory->NewStringFromStaticChars("locale"),
@@ -433,7 +433,7 @@ void SetResolvedNumericSettings(Isolate* isolate, const icu::Locale& icu_locale,
   char result[ULOC_FULLNAME_CAPACITY];
   UErrorCode status = U_ZERO_ERROR;
   uloc_toLanguageTag(icu_locale.getName(), result, ULOC_FULLNAME_CAPACITY,
-                     FALSE, &status);
+                     false, &status);
   if (U_SUCCESS(status)) {
     JSObject::SetProperty(
         isolate, resolved, factory->NewStringFromStaticChars("locale"),
@@ -538,7 +538,7 @@ void SetResolvedBreakIteratorSettings(Isolate* isolate,
   char result[ULOC_FULLNAME_CAPACITY];
   status = U_ZERO_ERROR;
   uloc_toLanguageTag(icu_locale.getName(), result, ULOC_FULLNAME_CAPACITY,
-                     FALSE, &status);
+                     false, &status);
   if (U_SUCCESS(status)) {
     JSObject::SetProperty(
         isolate, resolved, factory->NewStringFromStaticChars("locale"),
@@ -1105,7 +1105,7 @@ std::set<std::string> Intl::GetAvailableLocales(const IcuService& service) {
 
     error = U_ZERO_ERROR;
     // No need to force strict BCP47 rules.
-    uloc_toLanguageTag(icu_name, result, ULOC_FULLNAME_CAPACITY, FALSE, &error);
+    uloc_toLanguageTag(icu_name, result, ULOC_FULLNAME_CAPACITY, false, &error);
     if (U_FAILURE(error) || error == U_STRING_NOT_TERMINATED_WARNING) {
       // This shouldn't happen, but lets not break the user.
       continue;
@@ -1173,7 +1173,7 @@ std::string Intl::DefaultLocale(Isolate* isolate) {
       UErrorCode status = U_ZERO_ERROR;
       int32_t length =
           uloc_toLanguageTag(default_locale.getName(), result,
-                             ULOC_FULLNAME_CAPACITY, FALSE, &status);
+                             ULOC_FULLNAME_CAPACITY, false, &status);
       isolate->set_default_locale(
           U_SUCCESS(status) ? std::string(result, length) : "und");
     }
@@ -1763,7 +1763,7 @@ Maybe<std::string> Intl::CanonicalizeLanguageTag(Isolate* isolate,
   // Force strict BCP47 rules.
   char result[ULOC_FULLNAME_CAPACITY];
   int32_t result_len = uloc_toLanguageTag(icu_result, result,
-                                          ULOC_FULLNAME_CAPACITY, TRUE, &error);
+                                          ULOC_FULLNAME_CAPACITY, true, &error);
 
   if (U_FAILURE(error)) {
     THROW_NEW_ERROR_RETURN_VALUE(
@@ -2045,9 +2045,9 @@ Handle<Object> Intl::CompareStrings(Isolate* isolate,
     std::unique_ptr<uc16[]> sap1;
     std::unique_ptr<uc16[]> sap2;
     icu::UnicodeString string_val1(
-        FALSE, GetUCharBufferFromFlat(flat1, &sap1, length1), length1);
+        false, GetUCharBufferFromFlat(flat1, &sap1, length1), length1);
     icu::UnicodeString string_val2(
-        FALSE, GetUCharBufferFromFlat(flat2, &sap2, length2), length2);
+        false, GetUCharBufferFromFlat(flat2, &sap2, length2), length2);
     result = icu_collator->compare(string_val1, string_val2, status);
   }
   DCHECK(U_SUCCESS(status));
