@@ -161,7 +161,7 @@ Handle<JSObject> JSCollator::ResolvedOptions(Isolate* isolate,
   char result[ULOC_FULLNAME_CAPACITY];
   status = U_ZERO_ERROR;
   uloc_toLanguageTag(icu_locale.getName(), result, ULOC_FULLNAME_CAPACITY,
-                     FALSE, &status);
+                     false, &status);
   CHECK(U_SUCCESS(status));
 
   CreateDataPropertyForOptions(isolate, options,
