@@ -224,7 +224,6 @@ cc_defaults {
 cc_binary_host {
     name: "v8_bytecode_builtins_list_generator",
     defaults: ["v8_defaults"],
-    host_ldlibs: ["-lrt"],
     srcs: [
         "src/builtins/generate-bytecodes-builtins-list.cc",
         "src/interpreter/bytecode-operands.cc",
@@ -233,6 +232,11 @@ cc_binary_host {
     static_libs: [
         "v8_libbase",
     ],
+    target: {
+        linux: {
+            host_ldlibs: ["-lrt"],
+        },
+    },
 }
 
 genrule {
@@ -252,7 +256,6 @@ cc_binary_host {
         "-fexceptions",
         "-frtti",
     ],
-    host_ldlibs: ["-lrt"],
     srcs: [
         "src/torque/cc-generator.cc",
         "src/torque/cfg.cc",
@@ -281,6 +284,11 @@ cc_binary_host {
     static_libs: [
         "v8_libbase",
     ],
+    target: {
+        linux: {
+            host_ldlibs: ["-lrt"],
+        },
+    },
 }
 
 cc_defaults {
