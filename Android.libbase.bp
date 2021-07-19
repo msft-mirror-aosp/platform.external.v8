@@ -40,11 +40,14 @@ cc_library_static {
             ],
         },
         host: {
-            srcs: [
-                "src/base/debug/stack_trace_posix.cc",
-                "src/base/platform/platform-linux.cc",
-            ],
+            srcs: ["src/base/debug/stack_trace_posix.cc"],
             cflags: ["-UANDROID"],
+        },
+        linux_glibc: {
+            srcs: ["src/base/platform/platform-linux.cc"],
+        },
+        darwin: {
+            srcs: ["src/base/platform/platform-macos.cc"],
         },
     },
 }
